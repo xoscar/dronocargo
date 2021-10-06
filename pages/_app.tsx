@@ -1,7 +1,21 @@
+import { ReactElement } from 'react';
+import { Provider } from 'react-redux';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import store from '../configureStore';
+import Layout from './_layout';
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
-export default MyApp
+const App = ({ Component, pageProps }: AppProps): ReactElement => {
+  return (
+    <>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
+    </>
+  );
+};
+
+export default App;
